@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
+from django.db.models import Q
 from django.http import Http404, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -27,9 +28,15 @@ class MainView(View):
 
 class VacanciesView(View):
     def get(self, request, ):
+        search_query = request.GET.get('search','')
+
+        if search_query:
+            vacancies=Vacancy.objects.filter(Q(title__icontains=search_query) | Q(skills__icontains=search_query))
+        else:
+            vacancies = Vacancy.objects.all()
         return render(
             request, 'list.html', {
-                'vacancies': Vacancy.objects.all(),
+                'vacancies': vacancies,
             }
         )
 
