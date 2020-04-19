@@ -78,3 +78,8 @@ class Resume(models.Model):
 
     def __str__(self):
         return self.name
+
+#Расширение модели User
+#class User(AbstractUser):
+    #name = models.TextField(max_length=64, blank=True)
+    #surname = models.CharField(max_length=64, blank=True)
