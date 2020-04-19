@@ -3,17 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Джуманджи</title>
+    <title>Вакансии компании | Джуманджи</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    body {
+      background-color: #F6F2E6;
+    }
 
+    </style>
 </head>
 
 <body>
 <header class="container mt-3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mr-4" href="{% url 'index' %}">Джуманджи</a>
+        <a class="navbar-brand mr-4 font-weight-bold" href="{% url 'index' %}">Джуманджи</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,24 +29,22 @@
                 <li class="nav-item {% if activepoint == request.path %}active{% endif %}">
                     <a class="nav-link" href="{% url 'vacancies' %}">Вакансии</a>
                 </li>
-                <!--{% url 'index' as activepoint %}
-                <li class="nav-item {% if activepoint == request.path %}active{% endif %}"!-->
-                <a class="nav-link" href="">О проекте</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">О проекте</a>
                 </li>
             </ul>
             <ul class="navbar-nav col-2 justify-content-end">
-                {% if user.is_authenticated %}
                 <li class="nav-item active">
                     <div class="btn-group">
                         <button type="button" class="btn dropdown-toggle font-weight-bold" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             {% if user.first_name %}
-                                {{ user.first_name }}
-                                {% if user.last_name %}
-                                    {{ user.last_name }}
-                                {% endif %}
+                              {{ user.first_name }}
+                              {% if user.last_name %}
+                                {{ user.last_name }}
+                              {% endif %}
                             {% else %}
-                                {{ user.username }}
+                              {{ user.username }}
                             {% endif %}
                         </button>
                         <div class="dropdown-menu dropdown-menu-right mt-3">
@@ -51,12 +54,6 @@
                         </div>
                     </div>
                 </li>
-
-                {% else %}
-                <li class="nav-item active">
-                    <a href="{% url 'login' %}" class="nav-link font-weight-bold">Вход</a>
-                </li>
-                {% endif %}
             </ul>
         </div>
     </nav>
